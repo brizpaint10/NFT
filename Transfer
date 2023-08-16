@@ -1,0 +1,24 @@
+const Component = () => {
+  const { contract } = useContract("0x0000000000000000000000000000000000000000");
+  const {
+    mutate: transferNFT,
+    isLoading,
+    error,
+  } = useTransferNFT(contract);
+
+  if (error) {
+    console.error("failed to transfer NFT", error);
+  }
+
+  return (
+    <button
+      disabled={isLoading}
+      onClick={() => transferNFT({
+        to: "Addreess",
+        tokenId: 2
+      })}
+    >
+      Transfer
+    </button>
+  );
+};
